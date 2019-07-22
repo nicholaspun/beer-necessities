@@ -16,7 +16,7 @@ def normalize(sentence):
   sentence = sentence.lower()
   tokens = nltk.word_tokenize(sentence)
   lemmatized =  [ nltk.WordNetLemmatizer().lemmatize(t) for t in tokens if t not in STOPWORDS ]
-  
+
   return set(lemmatized)
 
 def flatten(lol):
@@ -70,7 +70,7 @@ Rating: {}'''.format(self.date, self.brewery, self.name, self.description, self.
 
     return flatten([extractADJ(t) for t in st_tagged_tree]) + flatten([extractADJ(t) for t in built_in_tagged_tree])
 
-# Start: 
+# Start:
 with io.open('data.csv', encoding='utf-8-sig') as csvfile:
   data_reader = csv.DictReader(csvfile)
   data_rows = [ DataRow(row) for row in data_reader ]
@@ -83,12 +83,3 @@ for row in data_rows:
 # logging.info(keywords)
 
 keywords = set(kw for kw in keywords if len(kw) >= 2)  # Some stems slipping through
-
-
-
-
-
-
-
-
-
