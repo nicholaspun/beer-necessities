@@ -1,14 +1,13 @@
 from flask import Flask
-import os
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
 import json
+import os
+import sys
 
 DIR = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(DIR, '..', 'module'))
+sys.path.append(os.path.join(DIR, 'module'))
 
 from firebase_client import FirebaseClient
+from beer import BeerCollection
 
 app = Flask(__name__)
 
@@ -21,7 +20,7 @@ def client_startup():
 
 @app.route('/beers')
 def get_beers():
-    return json.dumps(BEER_COLLECTION.get_beer_details())
+    return json.dumps(BEER_COLLECTION.get_basic_details())
 
 @app.route('/beers/<beer_id>')
 def get_beer_details(beer):

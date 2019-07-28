@@ -41,7 +41,13 @@ class BeerCollection:
         self.beers[id] = content
 
     def get_basic_details(self):
-        return [ { 'id': beer.id, 'name': beer.name, 'brewery': beer.brewery, 'rating': beer.rating } for beer in self.beers ]
+        return [
+            {
+             'id': beer_id,
+             'name': attrs.name,
+             'brewery': attrs.brewery,
+             'rating': attrs.rating
+             } for beer_id, attrs in self.beers.items() ]
 
     def get_full_details(self, beer_id):
         if not self.beers[beer_id]:
