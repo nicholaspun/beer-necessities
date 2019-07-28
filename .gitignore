@@ -2,3 +2,4 @@ senna-v3.0.tgz
 __pycache__/
 */__pycache__
 .venv/
+secrets/
