@@ -5,15 +5,15 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import json
 
-DIR = os.path.realpath(__FILE__)
+DIR = os.path.dirname(os.path.realpath(__file__))
 sys.path.append(os.path.join(DIR, '..', 'module'))
 
 from firebase_client import FirebaseClient
 
 app = Flask(__name__)
 
-FirebaseClient.initialize_with_file('secrets.json')
-BEER_COLLECTION = BeerCollection.from_firebase_doc(FirebaseClient.get_database('beer'))
+FirebaseClient.initialize_with_file(os.path.join(DIR, 'secrets', 'secrets.json'))
+BEER_COLLECTION = BeerCollection.from_firebase_doc(FirebaseClient.get_database(FirebaseClient.BEER_DB_NAME))
 
 @app.route('/')
 def client_startup():
