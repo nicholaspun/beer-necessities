@@ -11,7 +11,6 @@ RUN pip install -r requirements.txt
 WORKDIR /beer-necessities
 
 COPY module/ /beer-necessities/module
-COPY secrets/ /beer-necessities/secrets
 # COPY scripts/ /beer-necessities/scripts
 COPY app.py /beer-necessities/app.py
 
