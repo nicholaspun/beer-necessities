@@ -11,7 +11,13 @@ from beer import BeerCollection
 
 app = Flask(__name__)
 
-FirebaseClient.initialize_with_file(os.path.join(DIR, 'secrets', 'secrets.json'))
+# TODO: Had too much trouble trying to initialize the client
+# without using the file .... hence this.
+SECRETS_FILE_NAME = 'secrets.json'
+with open(SECRETS_FILE_NAME, 'w') as secretsfile:
+    secretsfile.write(os.environ['FIREBASE_SECRETS_FILE'])
+
+FirebaseClient.initialize_with_file(os.path.join(DIR, SECRETS_FILE_NAME))
 BEER_COLLECTION = BeerCollection.from_firebase_doc(FirebaseClient.get_database(FirebaseClient.BEER_DB_NAME))
 
 @app.route('/')
