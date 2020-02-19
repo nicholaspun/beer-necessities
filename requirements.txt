@@ -1,3 +1,4 @@
 Flask==1.0.3
 nltk
 firebase_admin
+flask-cors

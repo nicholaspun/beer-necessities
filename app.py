@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 import json
 import os
 import sys
@@ -11,6 +12,7 @@ from beer import BeerCollection
 
 app = Flask(__name__)
 port = int(os.environ.get('PORT', 5000))
+CORS(app)
 
 # TODO: Had too much trouble trying to initialize the client
 # without using the file .... hence this.
