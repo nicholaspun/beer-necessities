@@ -10,6 +10,7 @@ from firebase_client import FirebaseClient
 from beer import BeerCollection
 
 app = Flask(__name__)
+port = int(os.environ.get('PORT', 5000))
 
 # TODO: Had too much trouble trying to initialize the client
 # without using the file .... hence this.
@@ -48,3 +49,6 @@ def get_beer_details(beer):
 @app.route('/search/<param>')
 def get_beer_keys_from_search(param):
     return 'keys for beers based on a search parameter'
+
+if __name__ == '__main__':
+    app.run(debug = True, host = '0.0.0.0', port = port)

@@ -14,5 +14,5 @@ COPY module/ /beer-necessities/module
 # COPY scripts/ /beer-necessities/scripts
 COPY app.py /beer-necessities/app.py
 
-RUN export FLASK_APP=app.py
-CMD [ "flask", "run" ]
+ENTRYPOINT ["python"]
+CMD ["app.py"]
