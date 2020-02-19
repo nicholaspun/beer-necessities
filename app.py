@@ -13,9 +13,22 @@ app = Flask(__name__)
 
 # TODO: Had too much trouble trying to initialize the client
 # without using the file .... hence this.
+FIREBASE_INITIALIZATION = {
+  "type": "{}".format(os.environ['FIREBASE_SECRETS_TYPE']),
+  "project_id": "{}".format(os.environ['FIREBASE_SECRETS_PROJECT_ID']),
+  "private_key_id": "{}".format(os.environ['FIREBASE_SECRETS_PRIVATE_KEY_ID']),
+  "private_key": "{}".format(os.environ['FIREBASE_SECRETS_PRIVATE_KEY']),
+  "client_email": "{}".format(os.environ['FIREBASE_SECRETS_CLIENT_EMAIL']),
+  "client_id": "{}".format(os.environ['FIREBASE_SECRETS_CLIENT_ID']),
+  "auth_uri": "{}".format(os.environ['FIREBASE_SECRETS_AUTH_URI']),
+  "token_uri": "{}".format(os.environ['FIREBASE_SECRETS_TOKEN_URI']),
+  "auth_provider_x509_cert_url": "{}".format(os.environ['FIREBASE_SECRETS_AUTH_PROVIDER']),
+  "client_x509_cert_url": "{}".format(os.environ['FIREBASE_SECRETS_CLIENT_X509_CERT_URL'])
+}
+
 SECRETS_FILE_NAME = 'secrets.json'
 with open(SECRETS_FILE_NAME, 'w') as secretsfile:
-    secretsfile.write(os.environ['FIREBASE_SECRETS_FILE'])
+    secretsfile.write(json.dumps(FIREBASE_INITIALIZATION))
 
 FirebaseClient.initialize_with_file(os.path.join(DIR, SECRETS_FILE_NAME))
 BEER_COLLECTION = BeerCollection.from_firebase_doc(FirebaseClient.get_database(FirebaseClient.BEER_DB_NAME))
